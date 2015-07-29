@@ -1,15 +1,30 @@
 package com.old.fat;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
-public class TicTacNo extends ApplicationAdapter {
-	private SpriteBatch batch;
+import sun.rmi.runtime.Log;
+
+
+public class TicTacNo extends Game implements ApplicationListener {
+
+    SpriteBatch batch;
+    public BitmapFont font;
+
+
     private Sprite square;
 	private Texture img;
 
@@ -22,9 +37,19 @@ public class TicTacNo extends ApplicationAdapter {
     private final float xDisplacement = 150;
     private final float yDisplacement = 500;
 
+    StartMenu startMenu;
 
 	@Override
 	public void create () {
+
+
+        //start screen stuff
+
+        startMenu = new StartMenu(this);
+        setScreen(startMenu);
+        font = new BitmapFont();
+
+
         final float w = Gdx.graphics.getWidth();
         final float h = Gdx.graphics.getHeight();
         cam = new OrthographicCamera(800, 400 * (h / w));
@@ -41,6 +66,7 @@ public class TicTacNo extends ApplicationAdapter {
 	@Override
 	public void render () {
 		//Clear Screen
+
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
