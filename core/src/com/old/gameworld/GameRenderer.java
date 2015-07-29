@@ -34,8 +34,6 @@ public class GameRenderer {
         batcher = new SpriteBatch();
         // Attach batcher to camera
         batcher.setProjectionMatrix(cam.combined);
-
-
     }
 
     public void render() {
@@ -47,31 +45,25 @@ public class GameRenderer {
         batcher.begin();
         // Disable transparency
         // Good for performance when drawing images not requiring transparency.
-        //batcher.disableBlending();
-        /*
-        float width = 200;
-        float height = (float)164.44;
-        AssetLoader.tileNone.setSize(width, height);
-        int x = 150;
-        int y = 500;
-        AssetLoader.tileNone.setPosition(x, y);
-        AssetLoader.tileNone.draw(batcher);
-        */
+        batcher.disableBlending();
 
         Tile tiles[][] = board.getBoard();
         for(int y = 0; y < board.numTilesY; ++y) {
             for(int x = 0; x < board.numTilesX; ++x) {
                 Tile tile = tiles[x][y];
                 Sprite s = this.getSprite(tile);
-                float xPos = tile.getX();
-                float yPos = tile.getY();
+                float xPos = tile.getPosition().getKey();
+                float yPos = tile.getPosition().getValue();
                 s.setPosition(xPos, yPos);
                 s.draw(batcher);
             }
         }
-
+        AssetLoader.shadow.draw(batcher, "Tic Tac No", cam.viewportWidth/2 - 135, cam.viewportHeight - 20);
+        AssetLoader.font.draw(batcher, "Tic Tac No", cam.viewportWidth/2 - 135, cam.viewportHeight - 20);
         batcher.end();
     }
+
+    public OrthographicCamera getCamera() { return this.cam; }
 
     private Sprite getSprite(Tile tile) {
         switch(tile.getPossession()) {

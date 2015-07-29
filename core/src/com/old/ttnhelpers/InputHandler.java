@@ -1,17 +1,22 @@
 package com.old.ttnhelpers;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector3;
 import com.old.gameobjects.Board;
+import com.old.gameworld.GameWorld;
 
 /**
  * Created by allenwang on 7/26/15.
  */
 public class InputHandler implements InputProcessor {
 
-    private Board myBoard;
+    private GameWorld world;
+    private OrthographicCamera cam;
 
-    public InputHandler(Board board) {
-        myBoard = board;
+    public InputHandler(GameWorld world, OrthographicCamera camera) {
+        this.world = world;
+        cam = camera;
     }
 
     @Override
@@ -31,7 +36,9 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        myBoard.onClick(screenX, screenY);
+        Vector3 v = new Vector3(screenX, screenY, 0);
+        cam.unproject(v);
+        world.onClick(v.x, v.y);
         return true;
     }
 

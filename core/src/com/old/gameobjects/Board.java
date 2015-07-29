@@ -26,20 +26,33 @@ public class Board {
             for (int y = 0; y < numTilesY; ++y) {
                 board[x][y] = new Tile(xSize, ySize);
                 board[x][y].setPossession(Possession.None);
-                board[x][y].setX(xDisplacement + x * xSize);
-                board[x][y].setY(yDisplacement + y * ySize);
+                float xPosition = xDisplacement + x * xSize;
+                float yPosition = yDisplacement + y * ySize;
+                board[x][y].setPosition(new com.old.ttnhelpers.OrderedPair<Float, Float>(xPosition, yPosition));
             }
         }
     }
 
-    public void onClick(int x, int y) {
+    public void onClick(float x, float y) {
         // Find the tile corresponding to the click
+        for (Tile[] row: board) {
+            for (Tile tile: row) {
+                if (tile.isInRange(x,y)) {
+                    if (tile.hasNoPossession()) {
+                        tile.setPossession(possession);
+                        togglePossession();
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
-        // Toggle Possession
+    void togglePossession() {
         if (possession == Possession.Player1) {
             possession = Possession.Player2;
         } else {
-            possession = Possession.Player2;
+            possession = Possession.Player1;
         }
     }
 

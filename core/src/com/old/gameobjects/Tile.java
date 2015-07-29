@@ -1,9 +1,5 @@
 package com.old.gameobjects;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.old.ttnhelpers.AssetLoader;
-
 /**
  * Created by allenwang on 7/25/15.
  */
@@ -19,28 +15,17 @@ public class Tile {
         this.ySize = ySize;
     }
 
-    public void setX(float X) {
-        this.posX = X;
+    public void setPosition(com.old.ttnhelpers.OrderedPair<Float, Float> position) {
+        this.posX = position.getKey();
+        this.posY = position.getValue();
     }
 
-    public void setY(float Y) {
-        this.posY = Y;
+    public com.old.ttnhelpers.OrderedPair<Float, Float> getPosition() {
+        return new com.old.ttnhelpers.OrderedPair(posX, posY);
     }
 
-    public float getX() {
-        return (float)this.posX;
-    }
-
-    public float getY() {
-        return (float)this.posY;
-    }
-
-    public float getXSize() {
-        return (float)this.xSize;
-    }
-
-    public float getYSize() {
-        return (float)this.ySize;
+    public com.old.ttnhelpers.OrderedPair<Float, Float> getSize() {
+        return new com.old.ttnhelpers.OrderedPair(xSize, ySize);
     }
 
     public Possession getPossession() {
@@ -49,5 +34,25 @@ public class Tile {
 
     public void setPossession(Possession p) {
         this.possession = p;
+    }
+
+    public boolean isInRange(float X, float Y) {
+        /*
+        float rightX = posX + xSize / 2;
+        float leftX = posX - xSize / 2;
+        float topY = posY + ySize / 2;
+        float bottomY = posY - ySize / 2;
+        */
+        float leftX = posX;
+        float rightX = posX + xSize;
+        float bottomY = posY;
+        float topY = posY + ySize;
+        boolean isInXRange = (X <= rightX) && (X >= leftX);
+        boolean isInYRange = (Y <= topY) && (Y >= bottomY);
+        return isInXRange && isInYRange;
+    }
+
+    public boolean hasNoPossession() {
+        return possession == Possession.None;
     }
 }

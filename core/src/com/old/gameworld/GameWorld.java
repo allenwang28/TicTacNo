@@ -24,4 +24,7 @@ public class GameWorld {
         return board;
     }
 
+    public void onClick(float x, float y) {
+        board.onClick(x,y);
+    }
 }
