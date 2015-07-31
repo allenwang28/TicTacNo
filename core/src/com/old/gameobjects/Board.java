@@ -34,6 +34,14 @@ public class Board {
         }
     }
 
+    public void reset() {
+        for (Tile[] row: board) {
+            for (Tile tile: row) {
+                tile.setPossession(Possession.None);
+            }
+        }
+    }
+
     public void onClick(float x, float y) {
         // Find the tile corresponding to the click
         for (Tile[] row: board) {

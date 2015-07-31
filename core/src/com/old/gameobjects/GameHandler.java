@@ -39,11 +39,7 @@ public class GameHandler {
     }
 
     public void reset() {
-        world = null;
-        player1 = null;
-        player2 = null;
-        board = null;
-        scoredTiles = null;
+        scoredTiles.clear();
     }
 
     public void update(Possession lastMove) {

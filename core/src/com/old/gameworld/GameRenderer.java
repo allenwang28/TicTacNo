@@ -64,10 +64,18 @@ public class GameRenderer {
 
         String player1Score = String.valueOf(myWorld.getPlayer1().getScore());
         String player2Score = String.valueOf(myWorld.getPlayer2().getScore());
-        AssetLoader.shadow.draw(batcher, "Player 1: " + player1Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 550);
-        AssetLoader.font.draw(batcher, "Player 1: " + player1Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 550);
-        AssetLoader.shadow.draw(batcher, "Player 2: " + player2Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 600);
-        AssetLoader.font.draw(batcher, "Player 2: " + player2Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 600);
+        String player1Wins = String.valueOf(myWorld.getPlayer1().getWins());
+        String player2Wins = String.valueOf(myWorld.getPlayer2().getWins());
+        int xDisplacement = 200;
+        int yDisplacement = 450;
+        AssetLoader.shadow.draw(batcher, "Player 1: " + player1Score, cam.viewportWidth / 2 - xDisplacement, cam.viewportHeight - yDisplacement);
+        AssetLoader.font.draw(batcher, "Player 1: " + player1Score, cam.viewportWidth / 2 - 200, cam.viewportHeight - yDisplacement);
+        AssetLoader.shadow.draw(batcher, "Score: " + player1Score + " Wins: " + player1Wins, cam.viewportWidth / 2 - xDisplacement, cam.viewportHeight - yDisplacement - 50);
+        AssetLoader.font.draw(batcher, "Score: " + player1Score + " Wins: " + player1Wins, cam.viewportWidth / 2 - xDisplacement, cam.viewportHeight - yDisplacement - 50);
+        AssetLoader.shadow.draw(batcher, "Player 2: ", cam.viewportWidth / 2 - xDisplacement, cam.viewportHeight - yDisplacement - 100);
+        AssetLoader.font.draw(batcher, "Player 2: ", cam.viewportWidth / 2 - xDisplacement, cam.viewportHeight - yDisplacement - 100);
+        AssetLoader.shadow.draw(batcher, "Score: " + player2Score + " Wins: " + player2Wins, cam.viewportWidth / 2 - xDisplacement, cam.viewportHeight - yDisplacement - 150);
+        AssetLoader.font.draw(batcher, "Score: " + player2Score + " Wins: " + player2Wins, cam.viewportWidth / 2 - xDisplacement, cam.viewportHeight - yDisplacement - 150);
         batcher.end();
     }
 

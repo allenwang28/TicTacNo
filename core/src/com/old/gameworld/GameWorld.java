@@ -35,5 +35,22 @@ public class GameWorld {
     public void onClick(float x, float y) {
         board.onClick(x, y);
         controller.update(board.getLastPossession());
+        checkWin();
+    }
+
+    private void checkWin() {
+        if (board.isFull()) {
+            int score1 = player1.getScore();
+            int score2 = player2.getScore();
+            if (score1 > score2) {
+                player1.addWin();
+            } else if (score1 < score2) {
+                player2.addWin();
+            }
+            board.reset();
+            player1.resetScore();
+            player2.resetScore();
+            controller.reset();
+        }
     }
 }
