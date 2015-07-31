@@ -16,12 +16,15 @@ public class GameWorld {
     private Player player1;
     private Player player2;
     private GameHandler controller;
+    private boolean playing;
+    private final int requiredWins = 5;
 
     public GameWorld(float xSize, float ySize, float xDisplacement, float yDisplacement) {
         board = new Board(xSize, ySize, xDisplacement, yDisplacement);
         player1 = new Player(Possession.Player1);
         player2 = new Player(Possession.Player2);
         controller = new GameHandler(this);
+        playing = true;
     }
 
     public Board getBoard() {
@@ -33,9 +36,15 @@ public class GameWorld {
     public Player getPlayer2() { return this.player2; }
 
     public void onClick(float x, float y) {
-        board.onClick(x, y);
-        controller.update(board.getLastPossession());
-        checkWin();
+        if (playing) {
+            board.onClick(x, y);
+            controller.update(board.getLastPossession());
+            checkWin();
+        }
+        if (gameOver()) {
+            playing = false;
+            // Brandon make a screen come up here or something saying game over
+        }
     }
 
     private void checkWin() {
@@ -52,5 +61,11 @@ public class GameWorld {
             player2.resetScore();
             controller.reset();
         }
+    }
+
+    private boolean gameOver() {
+        if (player1.getWins() == requiredWins) { return true; }
+        if (player2.getWins() == requiredWins) { return true; }
+        return false;
     }
 }
