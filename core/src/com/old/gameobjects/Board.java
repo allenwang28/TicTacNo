@@ -1,5 +1,5 @@
 package com.old.gameobjects;
-
+import com.old.ttnhelpers.OrderedPair;
 /**
  * Created by allenwang on 7/26/15.
  *
@@ -24,7 +24,8 @@ public class Board {
 
         for (int x = 0; x < numTilesX; ++x) {
             for (int y = 0; y < numTilesY; ++y) {
-                board[x][y] = new Tile(xSize, ySize);
+                int tileNumber = x + y * numTilesY;
+                board[x][y] = new Tile(tileNumber, xSize, ySize);
                 board[x][y].setPossession(Possession.None);
                 float xPosition = xDisplacement + x * xSize;
                 float yPosition = yDisplacement + y * ySize;
@@ -40,23 +41,42 @@ public class Board {
                 if (tile.isInRange(x,y)) {
                     if (tile.hasNoPossession()) {
                         tile.setPossession(possession);
-                        togglePossession();
+                        this.possession = togglePossession();
                         break;
                     }
                 }
             }
         }
-    }
+   }
 
-    void togglePossession() {
+    private Possession togglePossession() {
         if (possession == Possession.Player1) {
-            possession = Possession.Player2;
+            return Possession.Player2;
         } else {
-            possession = Possession.Player1;
+            return Possession.Player1;
         }
     }
 
     public Tile[][] getBoard() {
         return board;
+    }
+
+    public boolean isFull() {
+        for (Tile[] row: board) {
+            for (Tile tile: row) {
+                if (tile.getPossession() == Possession.None) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public Tile getTile(int tileNum) {
+        return board[tileNum % 4][tileNum / 4];
+    }
+
+    public Possession getLastPossession() {
+        return togglePossession();
     }
 }

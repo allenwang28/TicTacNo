@@ -58,8 +58,16 @@ public class GameRenderer {
                 s.draw(batcher);
             }
         }
-        AssetLoader.shadow.draw(batcher, "Tic Tac No", cam.viewportWidth/2 - 135, cam.viewportHeight - 20);
-        AssetLoader.font.draw(batcher, "Tic Tac No", cam.viewportWidth/2 - 135, cam.viewportHeight - 20);
+
+        AssetLoader.shadow.draw(batcher, "Tic Tac No", cam.viewportWidth / 2 - 135, cam.viewportHeight - 20);
+        AssetLoader.font.draw(batcher, "Tic Tac No", cam.viewportWidth / 2 - 135, cam.viewportHeight - 20);
+
+        String player1Score = String.valueOf(myWorld.getPlayer1().getScore());
+        String player2Score = String.valueOf(myWorld.getPlayer2().getScore());
+        AssetLoader.shadow.draw(batcher, "Player 1: " + player1Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 550);
+        AssetLoader.font.draw(batcher, "Player 1: " + player1Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 550);
+        AssetLoader.shadow.draw(batcher, "Player 2: " + player2Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 600);
+        AssetLoader.font.draw(batcher, "Player 2: " + player2Score, cam.viewportWidth / 2 - 135, cam.viewportHeight - 600);
         batcher.end();
     }
 

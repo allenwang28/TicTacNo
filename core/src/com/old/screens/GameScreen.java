@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
         float xDisplacement = 2 * tileSize;
         float yDisplacement = 3 * (screenHeight / 8);
 
-        gameWorld = new GameWorld(150, 80, 100, 125);
+        gameWorld = new GameWorld(150, 80, 100, 160);
         renderer = new GameRenderer(gameWorld, screenHeight, screenWidth);
 
         Gdx.input.setInputProcessor(new InputHandler(gameWorld, renderer.getCamera()));
@@ -29,7 +29,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        gameWorld.update(delta);
         renderer.render();
     }
 
