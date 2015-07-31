@@ -1,16 +1,19 @@
 package com.old.gameobjects;
+import com.old.ttnhelpers.OrderedPair;
 
 /**
  * Created by allenwang on 7/25/15.
  */
 public class Tile {
     private Possession possession = Possession.None;
+    private int tileNumber;
     private float xSize;
     private float ySize;
     private float posX;
     private float posY;
 
-    public Tile(float xSize, float ySize) {
+    public Tile(int tileNumber, float xSize, float ySize) {
+        this.tileNumber = tileNumber;
         this.xSize = xSize;
         this.ySize = ySize;
     }
@@ -37,12 +40,6 @@ public class Tile {
     }
 
     public boolean isInRange(float X, float Y) {
-        /*
-        float rightX = posX + xSize / 2;
-        float leftX = posX - xSize / 2;
-        float topY = posY + ySize / 2;
-        float bottomY = posY - ySize / 2;
-        */
         float leftX = posX;
         float rightX = posX + xSize;
         float bottomY = posY;
@@ -54,5 +51,9 @@ public class Tile {
 
     public boolean hasNoPossession() {
         return possession == Possession.None;
+    }
+
+    public int getNumber() {
+        return this.tileNumber;
     }
 }
