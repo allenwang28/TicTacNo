@@ -44,6 +44,7 @@ public class GameWorld {
         if (gameOver()) {
             playing = false;
             // Brandon make a screen come up here or something saying game over
+            //ok after main menu
         }
     }
 

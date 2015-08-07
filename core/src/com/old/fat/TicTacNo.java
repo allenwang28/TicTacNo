@@ -15,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.old.screens.MainMenu;
 
 import sun.rmi.runtime.Log;
 
@@ -37,17 +38,10 @@ public class TicTacNo extends Game implements ApplicationListener {
     private final float xDisplacement = 150;
     private final float yDisplacement = 500;
 
-    StartMenu startMenu;
-
-	@Override
+  	@Override
 	public void create () {
 
-
-        //start screen stuff
-
-        startMenu = new StartMenu(this);
-        setScreen(startMenu);
-        font = new BitmapFont();
+       font = new BitmapFont();
 
 
         final float w = Gdx.graphics.getWidth();
