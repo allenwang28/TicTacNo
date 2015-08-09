@@ -11,11 +11,12 @@ import com.old.ttnhelpers.AssetLoader;
  */
 public class TicTacNoGame extends Game {
 
+
     @Override
     public void create() {
         AssetLoader.load();
-       // setScreen(new MainMenu());
-        setScreen(new GameScreen());
+        //set the screen as the main menu, pass in game
+        setScreen(new MainMenu(this));
         screen.show();
     }
 

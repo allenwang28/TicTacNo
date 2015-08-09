@@ -1,8 +1,10 @@
 package com.old.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.old.fat.TicTacNoGame;
 import com.old.gameworld.GameRenderer;
 import com.old.gameworld.GameWorld;
 import com.old.ttnhelpers.InputHandler;
@@ -13,8 +15,11 @@ import com.old.ttnhelpers.InputHandler;
 public class GameScreen implements Screen {
     private GameRenderer renderer;
     private GameWorld gameWorld;
+    TicTacNoGame g;
 
-    public GameScreen() {
+    public GameScreen(TicTacNoGame g) {
+        this.g = g;
+
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
         float tileSize = 150;
